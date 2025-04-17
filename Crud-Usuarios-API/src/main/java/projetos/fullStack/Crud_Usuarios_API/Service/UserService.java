@@ -11,8 +11,8 @@ import projetos.fullStack.Crud_Usuarios_API.repository.UserRepository;
 @RequiredArgsConstructor
 public class UserService {
 
-private static UserRepository repository;
-private static UserMappers mappers;
+private final UserRepository repository;
+private final UserMappers mappers;
 
 public UsersDTO userRegister(UsersDTO usersDTO){
     Users user = new Users();
@@ -20,7 +20,7 @@ public UsersDTO userRegister(UsersDTO usersDTO){
     user.setLastName(usersDTO.lastName());
     user.setBirthDate(usersDTO.birthDate());
     user.setEmail(usersDTO.email());
-    user.setPassword(user.getPassword());
+    user.setPassword(usersDTO.password());
     Users savedUser = repository.save(user);
     return mappers.convertToDto(savedUser);
 }
@@ -30,14 +30,13 @@ Users user = repository.findById(id).orElseThrow(() -> new RuntimeException("Oco
 return mappers.convertToDto(user);
 }
 
-public UsersDTO findByEmail(String email) {
+public UsersDTO findByEmail(String email){
     Users user = repository.findByEmail(email);
-    if (user.getEmail() == null) {
-        throw new RuntimeException("Esse email não existe");
+    if(user.getEmail() == null){
+        throw new RuntimeException("Erro ao encontrar email");
     }
     return mappers.convertToDto(user);
 }
-
 
 
 public UsersDTO update(String id, UsersDTO userDTO){

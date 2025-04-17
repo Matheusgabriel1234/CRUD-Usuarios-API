@@ -1,12 +1,14 @@
 package projetos.fullStack.Crud_Usuarios_API.mappers;
 
 import org.apache.catalina.User;
+import org.springframework.stereotype.Component;
 import projetos.fullStack.Crud_Usuarios_API.model.Users;
 import projetos.fullStack.Crud_Usuarios_API.model.UsersDTO;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Component
 public class UserMappers {
 
 

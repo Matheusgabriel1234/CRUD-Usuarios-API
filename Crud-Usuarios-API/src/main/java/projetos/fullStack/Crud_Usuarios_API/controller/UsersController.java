@@ -16,7 +16,7 @@ import projetos.fullStack.Crud_Usuarios_API.model.UsersDTO;
 public class UsersController {
 
 
-    private static UserService service;
+    private final UserService service;
 
 
 
@@ -32,7 +32,7 @@ public class UsersController {
         return new ResponseEntity<>(dto,HttpStatus.OK);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public ResponseEntity<UsersDTO> findByEmail(@RequestParam String email){
         UsersDTO dto = service.findByEmail(email);
         return new ResponseEntity<>(dto,HttpStatus.OK);
